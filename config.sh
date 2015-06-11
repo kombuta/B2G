@@ -30,7 +30,7 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/mozilla-b2g/b2g-manifest"}
+GITREPO=${GITREPO:-"git://github.com/kombuta/b2g-manifest"}
 BRANCH=${BRANCH:-master}
 
 while [ $# -ge 1 ]; do
@@ -186,6 +186,11 @@ case "$1" in
 	repo_sync aries
 	;;
 
+"cubieboard")
+	echo DEVICE=cubieboard >> .tmp-config &&
+	repo_sync $1
+	;;
+
 *)
 	echo "Usage: $0 [-cdflnq] (device name)"
 	echo "Flags are passed through to |./repo sync|."
@@ -227,6 +232,7 @@ case "$1" in
 	echo - emulator-x86-jb
 	echo - emulator-x86-kk
 	echo - emulator-x86-l
+	echo - cubieboard
 	exit -1
 	;;
 esac
